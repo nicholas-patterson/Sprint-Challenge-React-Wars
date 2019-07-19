@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../../src/App.css";
 import axios from "axios";
 import CharacterList from "./CharacterList";
+import DogList from "./DogList";
 import styled from "styled-components";
 
 const Header = styled.h1`
@@ -38,6 +39,12 @@ const App = () => {
       .then(res => setPeople(res.data.results));
   }, []);
 
+  useEffect(() => {
+    axios
+      .get("https://dog.ceo/api/breeds/image/random")
+      .then(res => setDog(res.data.message));
+  }, []);
+
   return (
     <div className="App">
       <Header>
@@ -47,6 +54,7 @@ const App = () => {
       <List>
         <CharacterList data={people} />
       </List>
+      <DogList dog={dog} />
     </div>
   );
 };
