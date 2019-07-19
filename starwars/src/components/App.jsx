@@ -11,7 +11,7 @@ const Header = styled.h1`
   height: 70px;
   background: black;
   margin: 0;
-  padding: 0;
+  padding-top: 20px;
   box-shadow: 2px 2px 10px white;
 `;
 
@@ -30,6 +30,7 @@ const App = () => {
   // sync up with, if any.
 
   const [people, setPeople] = useState([]);
+  const [dog, setDog] = useState("");
 
   useEffect(() => {
     axios
@@ -37,13 +38,11 @@ const App = () => {
       .then(res => setPeople(res.data.results));
   }, []);
 
-  console.log("people in App:", people);
-
   return (
     <div className="App">
       <Header>
         {" "}
-        <h1 className="Header">React Wars</h1>
+        <div className="Header">React Wars</div>
       </Header>
       <List>
         <CharacterList data={people} />
